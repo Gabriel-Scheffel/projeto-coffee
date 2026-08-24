@@ -7,6 +7,7 @@
 * {
     margin: 0px;
     padding: 0px;
+    box-sizing: border-box;
 }
 
 :root {
@@ -23,24 +24,33 @@
 
 body {
     background-color: var(--creme);
+    display: grid;
+}
+
+body > .item {
+    /*border: 5px dashed green;*/
 }
 
 header {
-    height: 900px;
     background-image: url(../imagens/cafe-graos.jpg);
     background-attachment: fixed;
+    height: 900px;
+    color: var(--creme);
 }
 
-header > div {
+header .container {
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), var(--marrom-escuro));
     height: 100%;
+    display: flex;
+    justify-content: center;
 }
 
-header > div > div {
-    height: 100%;
-    padding: 350px 0px;
+header .item {
     text-align: center;
-    color: var(--creme);
+    max-width: 60%;
+    flex: 1 1 400px;
+    align-self: center;
+
 }
 
 header h1 {
@@ -53,87 +63,92 @@ header p {
     font-size: 2em;
 }
 
+main {
+    display: grid;
+    grid-template: 1fr 1fr 2fr / 100vw
+}
+
 main > div {
     background-color: var(--marrom-escuro);
-    height: 900px;
-}
-
-main > div > section#historia {
     color: var(--creme);
-    display: block;
-    margin: auto;
-    height: 100%;
-    padding: 180px 0px;
-    max-width: 440px;
+    display: flex;
+    justify-content: center;
 }
 
-section#historia > h2 {
+main #historia {
+    flex: 0 1 400px;
+    align-self: center;
+}
+
+#historia > h2 {
     font-family: var(--font-titulo);
     font-size: 2.6em;
     text-align: center;
-    margin: 30px;
+    margin: 20px;
 }
 
-section#historia > p {
+#historia > p {
     font-family: var(--font-texto);
     font-size: 1.2em;
     text-align: justify;
 }
 
-main > section#sabores {
+#sabores {
     background-image: linear-gradient(to top, rgba(0, 0, 0, 0), var(--marrom-escuro)), url(../imagens/xicaras.jpg);
     background-size: cover;
     background-position: center center;
-    height: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-section#sabores > div > p {
+#sabores .item {
+    height: 65%;
+    flex: 0 1 auto;
+}
+
+#sabores p {
     font-family: var(--font-titulo);
-    font-size: 2.5em;
+    font-size: 2.4em;
     text-align: center;
     color: var(--creme);
-    padding: 100px 0px;
 }
 
-section#fotos {
-    height: 440px;
-    margin-top: 20px;
-    margin-bottom: 20px; 
-    text-align: center;
-    background-color: var(--creme);
+#fotos {
+    margin: 20px 0px;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 20px;
+    align-items: center;
 }
 
-section#fotos > div.foto {
-    display: inline-block;
-    height: 100%;
-    width: 33%;
-    background-size: cover;
-    background-position: center center;
+#fotos img {
+    width: 95%;
+    height: 600px;
+    object-fit: cover;
+    border-radius: 8px;
 }
 
-div#f1 {
-    background-image: url(../imagens/foto-c.jpg);
-}
-
-div#f2 {
-    background-image: url(../imagens/foto-a.jpg);
-}
-
-div#f3 {
-    background-image: url(../imagens/foto-d.jpg);
+#fotos #f1 {
+    display: none;
 }
 
 footer {
     background-color: var(--marrom-escuro);
-    background-image: url(../imagens/barista.jpg);
-    background-repeat: no-repeat;
-    background-position: right top;
     color: var(--creme);
     height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 footer > div#texto {
-    padding: 160px 30px;
+    text-align: center;
+    height: 60%;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 footer h2 {
@@ -145,4 +160,3 @@ footer p {
     font-family: var(--font-texto);
     font-size: 1.6em;
 }
-
