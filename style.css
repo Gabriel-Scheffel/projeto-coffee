@@ -93,7 +93,7 @@ main > div {
     background-image: linear-gradient(to top, rgba(0, 0, 0, 0), var(--marrom-escuro)), url(imagens/xicaras-empe.jpg);
     background-size: cover;
     background-repeat: no-repeat;
-    height: 600px;
+    height: 700px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -103,8 +103,12 @@ main > div {
     height: 90%;
     color: var(--creme);
     text-align: center;
-    font-size: 1.2em;
+    font-size: 1.5em;
     font-family: var(--font-titulo);
+}
+
+#outros {
+    display: none;
 }
 
 /* ============================================== */
@@ -129,12 +133,29 @@ main > div {
 /* vvvvvvvvvvvvvvvvvvv FOOTER vvvvvvvvvvvvvvvvvvv */
 
 footer {
-    height: 450px;
     background-color: var(--marrom-escuro);
     color: var(--creme);
-    text-align: center;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 footer #texto {
-    border: 2px dashed var(--creme);
+    text-align: center;
+    height: 60%;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+footer h2 {
+    font-family: var(--font-titulo);
+    font-size: 2em;
+}
+
+footer p {
+    font-family: var(--font-texto);
+    font-size: 1.1em;
 }

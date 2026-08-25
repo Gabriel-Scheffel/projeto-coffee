@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+@media screen and (min-width: 550px) {
+
+    /*
+    MUDAR O TAMANHO DAS FONTES DO HEADER E HISTÓRIA
+    */
+
+    #sabores {
+        background-image: linear-gradient(to top, rgba(0, 0, 0, 0), var(--marrom-escuro)), url(imagens/xicaras.jpg);
+        background-position: center center;
+    }
+
+    #mobile {
+        display: none;
+    }
+
+    #outros {
+        font-size: 1.6em;
+        display: inline;
+    }
+
+}
