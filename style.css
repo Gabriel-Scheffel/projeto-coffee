@@ -21,6 +21,13 @@
     --font-texto: "Cabin", sans-serif;
 }
 
+body {
+    background-color: var(--creme);
+}
+
+/* ============================================== */
+/* vvvvvvvvvvvvvvvvvvv HEADER vvvvvvvvvvvvvvvvvvv */
+
 header {
     background-image: url(imagens/cafe-graos.jpg);
     background-size: contain;
@@ -51,4 +58,83 @@ header h1 {
 header p {
     font-family: var(--font-texto);
     font-size: 1.8em;
+}
+
+/* ^^^^^^^^^^^^^^^^^^^ HEADER ^^^^^^^^^^^^^^^^^^^ */
+/* ============================================== */
+/* vvvvvvvvvvvvvvvvvvvv MAIN vvvvvvvvvvvvvvvvvvvv */
+
+main > div {
+    background-color: var(--marrom-escuro);
+    height: 700px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#historia {
+    flex: 0 0 70%;
+    color: var(--creme);
+}
+
+#historia h2 {
+    font-family: var(--font-titulo);
+    text-align: center;
+}
+
+#historia p {
+    font-family: var(--font-texto);
+    text-align: justify;
+}
+
+/* ============================================== */
+
+#sabores {
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0), var(--marrom-escuro)), url(imagens/xicaras-empe.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#sabores > div {
+    height: 90%;
+    color: var(--creme);
+    text-align: center;
+    font-size: 1.2em;
+    font-family: var(--font-titulo);
+}
+
+/* ============================================== */
+
+#fotos {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    margin: 10px 0px;
+}
+
+#fotos img {
+    width: 370px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* ^^^^^^^^^^^^^^^^^^^^ MAIN ^^^^^^^^^^^^^^^^^^^^ */
+/* ============================================== */
+/* vvvvvvvvvvvvvvvvvvv FOOTER vvvvvvvvvvvvvvvvvvv */
+
+footer {
+    height: 450px;
+    background-color: var(--marrom-escuro);
+    color: var(--creme);
+    text-align: center;
+}
+
+footer #texto {
+    border: 2px dashed var(--creme);
 }
