@@ -7,10 +7,7 @@
 * {
     margin: 0px;
     padding: 0px;
-}
-
-body {
-    background-color: var(--creme);
+    box-sizing: border-box;
 }
 
 :root {
@@ -25,123 +22,33 @@ body {
 }
 
 header {
-    height: 900px;
     background-image: url(imagens/cafe-graos.jpg);
+    background-size: contain;
     background-attachment: fixed;
+    height: 700px;
 }
 
 header > div {
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), var(--marrom-escuro));
     height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }
 
 header > div > div {
-    height: 100%;
-    padding: 350px 0px;
-    text-align: center;
+    flex: 0 1 auto;
     color: var(--creme);
+    text-align: center;
 }
 
 header h1 {
     font-family: var(--font-titulo);
-    font-size: 7em;
+    font-size: 3.4em;
 }
 
 header p {
     font-family: var(--font-texto);
-    font-size: 2em;
+    font-size: 1.8em;
 }
-
-main > div {
-    background-color: var(--marrom-escuro);
-    height: 900px;
-}
-
-main > div > section#historia {
-    color: var(--creme);
-    display: block;
-    margin: auto;
-    height: 100%;
-    padding: 180px 0px;
-    max-width: 440px;
-}
-
-section#historia > h2 {
-    font-family: var(--font-titulo);
-    font-size: 2.6em;
-    text-align: center;
-    margin: 30px;
-}
-
-section#historia > p {
-    font-family: var(--font-texto);
-    font-size: 1.2em;
-    text-align: justify;
-}
-
-main > section#sabores {
-    background-image: linear-gradient(to top, rgba(0, 0, 0, 0), var(--marrom-escuro)), url(imagens/xicaras.jpg);
-    background-size: cover;
-    background-position: center center;
-    height: 800px;
-}
-
-section#sabores > div > p {
-    font-family: var(--font-titulo);
-    font-size: 2.5em;
-    text-align: center;
-    color: var(--creme);
-    padding: 100px 0px;
-}
-
-section#fotos {
-    height: 440px;
-    margin-top: 20px;
-    margin-bottom: 20px; 
-    text-align: center;
-    background-color: var(--creme);
-}
-
-section#fotos > div.foto {
-    display: inline-block;
-    height: 100%;
-    width: 33%;
-    background-size: cover;
-    background-position: center center;
-}
-
-div#f1 {
-    background-image: url(imagens/foto-c.jpg);
-}
-
-div#f2 {
-    background-image: url(imagens/foto-a.jpg);
-}
-
-div#f3 {
-    background-image: url(imagens/foto-d.jpg);
-}
-
-footer {
-    background-color: var(--marrom-escuro);
-    background-image: url(imagens/barista.jpg);
-    background-repeat: no-repeat;
-    background-position: right top;
-    color: var(--creme);
-    height: 600px;
-}
-
-footer > div#texto {
-    padding: 160px 30px;
-}
-
-footer h2 {
-    font-family: var(--font-titulo);
-    font-size: 3em;
-}
-
-footer p {
-    font-family: var(--font-texto);
-    font-size: 1.6em;
-}
-
