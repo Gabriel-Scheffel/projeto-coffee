@@ -23,7 +23,6 @@
 
 
 body {
-    background-color: var(--creme);
     display: grid;
 }
 /*
@@ -65,7 +64,7 @@ header p {
 
 main {
     display: grid;
-    grid-template: 1fr 1fr 2fr / 100%
+    grid-template: 1fr 1fr 1fr / 100%
 }
 
 main > div {
@@ -115,14 +114,14 @@ main #historia {
 }
 
 #fotos {
-    margin: 20px 0px;
+    background-color: var(--creme);
     display: flex;
     flex-flow: column nowrap;
-    gap: 20px;
     align-items: center;
 }
 
 #fotos img {
+    margin: 20px 0px;
     width: 95%;
     height: 300px;
     object-fit: contain;
