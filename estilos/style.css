@@ -26,11 +26,11 @@ body {
     background-color: var(--creme);
     display: grid;
 }
-
+/*
 body > .item {
-    /*border: 5px dashed green;*/
+    border: 5px dashed green;
 }
-
+*/
 header {
     background-image: url(../imagens/cafe-graos.jpg);
     background-attachment: fixed;
@@ -76,7 +76,7 @@ main > div {
 }
 
 main #historia {
-    flex: 0 1 400px;
+    flex: 0 1 300px;
     align-self: center;
 }
 
@@ -125,7 +125,7 @@ main #historia {
 #fotos img {
     width: 95%;
     height: 600px;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 8px;
 }
 
