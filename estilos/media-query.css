@@ -51,7 +51,22 @@
         font-size: 2em;
     }
 
+    #cardapio-lista {
+        /* 2 colunas — já cabem lado a lado com a tela mais larga. */
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    #fotos .fotos-estatico {
+        /* A partir daqui usamos a galeria interativa (abaixo) em vez
+           das fotos estáticas do celular. */
+        display: none;
+    }
+
     #fotos .galeria {
+        /* Escondida no celular por padrão (ver style.css); a partir
+           daqui já tem espaço de sobra para não causar rolagem
+           lateral, então volta a aparecer. */
+        display: flex;
         /* Foto maior, já que a tela também é maior. */
         max-width: 800px;
     }
@@ -129,6 +144,11 @@
         font-size: 2.4em;
     }
 
+    #cardapio-lista {
+        /* 3 colunas no desktop. */
+        grid-template-columns: repeat(3, 1fr);
+    }
+
     #fotos .galeria {
         /* Mais larga: dá espaço para os botões ficarem bem mais
            afastados das fotos, perto das bordas da seção. */
@@ -165,6 +185,12 @@
            outros, só com o "gap" entre eles, em vez de esparramados
            pela altura toda do footer. */
         justify-content: center;
+    }
+
+    .selo {
+        /* Alinhado à esquerda junto com o resto do texto do footer
+           nesse breakpoint (em vez de centralizado). */
+        align-self: flex-start;
     }
 
     footer .barista {

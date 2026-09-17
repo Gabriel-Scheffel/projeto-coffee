@@ -84,12 +84,12 @@ header p {
 }
 
 main {
-    /* GRID: empilha as seções (história, sabores, fotos) verticalmente.
-       Em telas pequenas cada linha usa "auto", ou seja, a altura do
-       próprio conteúdo — assim nenhuma seção fica cortada ou com
-       espaço em branco sobrando. */
+    /* GRID: empilha as seções (história, sabores, cardápio, fotos)
+       verticalmente. Em telas pequenas cada linha usa "auto", ou
+       seja, a altura do próprio conteúdo — assim nenhuma seção fica
+       cortada ou com espaço em branco sobrando. */
     display: grid;
-    grid-template-rows: auto auto auto;
+    grid-template-rows: auto auto auto auto;
     grid-template-columns: 100%;
     /* Evita uma linha clara (o branco padrão do body) aparecer entre
        as seções: com aspect-ratio, a altura calculada pode arredondar
@@ -178,23 +178,100 @@ main #historia {
     color: var(--creme);
 }
 
+#cardapio {
+    /* --marrom-medio: cor da paleta que ainda não tinha sido usada —
+       dá uma variação sutil em relação ao marrom mais escuro de
+       #historia e do footer. */
+    background-color: var(--marrom-medio);
+    color: var(--creme);
+    padding: 40px 20px;
+}
+
+#cardapio h2 {
+    font-family: var(--font-titulo);
+    font-size: 1.9em;
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+#cardapio-lista {
+    /* GRID: os cards do cardápio (criados pelo JS) se organizam em
+       colunas — 1 no celular, mais colunas a partir do tablet (ver
+       media query). */
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.item-cardapio {
+    background-color: var(--marrom-escuro);
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.item-cardapio h3 {
+    font-family: var(--font-titulo);
+    font-size: 1.3em;
+    margin-bottom: 6px;
+}
+
+.item-cardapio .preco {
+    font-family: var(--font-texto);
+    font-weight: bold;
+    color: var(--laranja);
+    margin-bottom: 8px;
+}
+
+.item-cardapio .descricao {
+    font-family: var(--font-texto);
+    font-size: 0.95em;
+}
+
 #fotos {
     background-color: var(--creme);
-    /* FLEXBOX: centraliza o bloco da galeria (foto + botões). */
+    /* FLEXBOX: centraliza o conteúdo da seção. No celular mostra as
+       fotos estáticas (.fotos-estatico); a galeria com JS
+       (.galeria) só aparece a partir do tablet (ver media query) —
+       no celular, com a tela estreita, ela causava rolagem lateral. */
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     padding: 30px 15px;
+    /* min-width:0 — a seção #fotos é um item do grid de "main". Sem
+       isso, fotos na horizontal (mais largas que altas) forçavam essa
+       seção (e a página inteira) a crescer além da largura da tela,
+       porque o navegador reservava espaço para a largura "natural"
+       da imagem antes de aplicar o encolhimento do flexbox. */
+    min-width: 0;
+}
+
+#fotos .fotos-estatico {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+}
+
+#fotos .fotos-estatico img {
+    width: 100%;
+    max-width: 500px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 8px;
 }
 
 #fotos .galeria {
-    /* FLEXBOX em linha: justify-content:space-between empurra os
-       botões para as duas pontas, enquanto as fotos ficam agrupadas
-       (e mais afastadas dos botões) no meio, dentro de .fotos-wrap. */
-    display: flex;
+    /* Escondida no celular (ver acima); a media query de 600px troca
+       esse display para "flex". */
+    display: none;
     align-items: center;
     justify-content: space-between;
     width: 100%;
     max-width: 650px;
+    min-width: 0;
 }
 
 #fotos .fotos-wrap {
@@ -291,6 +368,30 @@ footer h2 {
     font-size: 1.8em;
 }
 
+.selo {
+    /* align-self:center — sem isso, o span esticaria e viraria uma
+       barra ocupando 100% da largura (comportamento padrão de um
+       item dentro de um flex column), em vez de um "selo" do
+       tamanho do próprio texto. */
+    align-self: center;
+    font-family: var(--font-texto);
+    font-size: 0.9em;
+    font-weight: bold;
+    padding: 5px 14px;
+    border-radius: 999px;
+}
+
+.selo-aberto {
+    /* Cor de destaque da paleta: chama atenção para a boa notícia. */
+    background-color: var(--laranja);
+    color: var(--marrom-escuro);
+}
+
+.selo-fechado {
+    background-color: var(--marrom-claro);
+    color: var(--creme);
+}
+
 footer p {
     font-family: var(--font-texto);
     font-size: 1em;
@@ -301,4 +402,30 @@ footer .barista {
        1024px em estilos/media-query.css); no celular e no tablet o
        footer continua só com o texto centralizado. */
     display: none;
+}
+
+#btn-topo {
+    /* position:fixed — o botão fica sempre no mesmo lugar da tela,
+       mesmo com a página rolando. Escondido por padrão (display:none);
+       o JS adiciona a classe .visivel depois de rolar um pouco. */
+    display: none;
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 44px;
+    height: 44px;
+    border: none;
+    border-radius: 50%;
+    background-color: var(--marrom-escuro);
+    color: var(--creme);
+    font-size: 1.3em;
+    cursor: pointer;
+    /* Acima de qualquer outro elemento da página. */
+    z-index: 100;
+}
+
+#btn-topo.visivel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

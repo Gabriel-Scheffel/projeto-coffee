@@ -58,3 +58,112 @@ botaoAnterior.addEventListener("click", function () {
 
 // Mostra as 3 fotos certas assim que a página carrega.
 mostrarFoto(indiceAtual);
+
+// SELO "ABERTO AGORA" / "FECHADO"
+// Variáveis com o horário de funcionamento (formato 24h).
+const horaAbertura = 8;
+const horaFechamento = 20;
+
+// Tratamento de dados: pega a data/hora atual do visitante e extrai
+// só a hora (um número de 0 a 23).
+const horaAtual = new Date().getHours();
+
+const seloHorario = document.getElementById("selo-horario");
+
+// Condicional: a loja está aberta se a hora atual estiver entre o
+// horário de abertura (incluso) e o de fechamento (não incluso).
+if (horaAtual >= horaAbertura && horaAtual < horaFechamento) {
+    seloHorario.textContent = "Estamos abertos agora ☕";
+    seloHorario.classList.add("selo-aberto");
+} else {
+    seloHorario.textContent = "Fechado no momento — abrimos às " + horaAbertura + "h";
+    seloHorario.classList.add("selo-fechado");
+}
+
+// CARDÁPIO DE CAFÉS
+// Array de objetos: cada item do cardápio tem nome, preço e descrição.
+const cardapio = [
+    {
+        nome: "Espresso",
+        preco: 6.5,
+        descricao: "Café puro, forte e encorpado."
+    },
+    {
+        nome: "Cappuccino",
+        preco: 9.0,
+        descricao: "Espresso, leite vaporizado e espuma cremosa."
+    },
+    {
+        nome: "Latte",
+        preco: 9.5,
+        descricao: "Espresso com bastante leite vaporizado e uma fina camada de espuma."
+    },
+    {
+        nome: "Mocha",
+        preco: 10.5,
+        descricao: "Espresso, chocolate quente e leite vaporizado."
+    },
+    {
+        nome: "Chá Gelado",
+        preco: 7.0,
+        descricao: "Chá preto gelado, servido com rodelas de limão."
+    },
+    {
+        nome: "Croissant",
+        preco: 8.0,
+        descricao: "Croissant amanteigado, assado na hora."
+    }
+];
+
+const listaCardapio = document.getElementById("cardapio-lista");
+
+// Função que recebe um item do cardápio (um objeto do array acima) e
+// devolve o elemento HTML pronto do card correspondente.
+function criarItemCardapio(item) {
+    const card = document.createElement("div");
+    card.className = "item-cardapio";
+
+    const titulo = document.createElement("h3");
+    titulo.textContent = item.nome;
+
+    const preco = document.createElement("p");
+    preco.className = "preco";
+    // Tratamento de dados: formata o número (ex: 9.5) como preço em
+    // reais (ex: "R$ 9,50").
+    preco.textContent = "R$ " + item.preco.toFixed(2).replace(".", ",");
+
+    const descricao = document.createElement("p");
+    descricao.className = "descricao";
+    descricao.textContent = item.descricao;
+
+    card.appendChild(titulo);
+    card.appendChild(preco);
+    card.appendChild(descricao);
+
+    return card;
+}
+
+// Repetição: percorre o array do cardápio e adiciona cada card na
+// página, um por um.
+for (let i = 0; i < cardapio.length; i++) {
+    const cardHTML = criarItemCardapio(cardapio[i]);
+    listaCardapio.appendChild(cardHTML);
+}
+
+// BOTÃO "VOLTAR AO TOPO"
+const botaoTopo = document.getElementById("btn-topo");
+
+// Evento de rolagem: toda vez que o usuário rola a página, verifica
+// a posição atual (window.scrollY) e decide se mostra o botão.
+window.addEventListener("scroll", function () {
+    if (window.scrollY > 400) {
+        botaoTopo.classList.add("visivel");
+    } else {
+        botaoTopo.classList.remove("visivel");
+    }
+});
+
+// Ao clicar, rola a página de volta para o topo suavemente.
+botaoTopo.addEventListener("click", function () {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+});

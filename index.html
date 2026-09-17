@@ -44,12 +44,31 @@
             <div class="foto"></div>
         </section>
 
+        <!-- CARDÁPIO: os itens NÃO estão escritos aqui no HTML — um
+             array de objetos em js/script.js é percorrido com um
+             "for" que cria e insere cada card dentro de
+             #cardapio-lista. -->
+        <section id="cardapio">
+            <h2>NOSSO CARDÁPIO</h2>
+            <div id="cardapio-lista"></div>
+        </section>
+
         <!-- GALERIA DE FOTOS: um JS simples (js/script.js) troca o src
              das 3 imagens ao clicar nos botões, percorrendo o array
              de fotos com uma variável de índice. As duas laterais
              (preview) mostram a foto anterior/seguinte apagadas, com
              um degradê por cima (ver estilos/style.css). -->
         <section id="fotos" class="container">
+            <!-- No celular a galeria com JS causava rolagem lateral,
+                 então aqui mostramos só 2 fotos estáticas (sem botões,
+                 sem JS), como era antes de criarmos a galeria. -->
+            <div class="fotos-estatico">
+                <img src="imagens/foto-e.jpg" alt="cafés e croassaints">
+                <img src="imagens/foto-f.jpg" alt="cafés e croassaints">
+            </div>
+
+            <!-- A partir do tablet (ver media query) a versão estática
+                 acima fica escondida e esta galeria interativa aparece. -->
             <div class="galeria">
                 <button id="btn-anterior" type="button" aria-label="Foto anterior">‹</button>
                 <div class="fotos-wrap">
@@ -72,6 +91,9 @@
     <footer class="item">
         <div id="texto">
             <h2>CONTATO</h2>
+            <!-- SELO ABERTO/FECHADO: texto e cor definidos pelo JS
+                 (js/script.js) de acordo com a hora atual do visitante. -->
+            <span id="selo-horario" class="selo"></span>
             <br>
             <p><strong>Telefone:</strong> <br>55 51 4002-8922</p>
             <p><strong>Email:</strong> <br>coffeshop@mail.com</p>
@@ -79,6 +101,10 @@
         </div>
         <img src="imagens/barista.jpg" alt="Barista preparando um café" class="barista">
     </footer>
+
+    <!-- BOTÃO VOLTAR AO TOPO: escondido por padrão; o JS (js/script.js)
+         mostra ele só depois que o usuário rola a página para baixo. -->
+    <button id="btn-topo" type="button" aria-label="Voltar ao topo">▲</button>
 
     <script src="js/script.js"></script>
 </body>
