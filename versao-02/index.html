@@ -44,21 +44,14 @@
             <div class="foto"></div>
         </section>
 
-        <!-- GALERIA DE FOTOS: um JS simples (js/script.js) troca o src
-             das 3 imagens ao clicar nos botões, percorrendo o array
-             de fotos com uma variável de índice. As duas laterais
-             (preview) mostram a foto anterior/seguinte apagadas, com
-             um degradê por cima (ver estilos/style.css). -->
+        <!-- GALERIA DE FOTOS: no celular fica em coluna única (flexbox,
+             1ª foto escondida para não alongar a página); a partir de
+             600px de largura passa a ser um grid de 3 colunas com as
+             3 fotos lado a lado (ver media query em estilos/style.css). -->
         <section id="fotos" class="container">
-            <div class="galeria">
-                <button id="btn-anterior" type="button" aria-label="Foto anterior">‹</button>
-                <div class="fotos-wrap">
-                    <img id="foto-anterior" class="preview" src="imagens/foto-f.jpg" alt="Foto anterior da galeria">
-                    <img id="foto-galeria" src="imagens/foto-a.jpg" alt="cafés e croassaints">
-                    <img id="foto-proxima" class="preview" src="imagens/foto-b.jpg" alt="Próxima foto da galeria">
-                </div>
-                <button id="btn-proxima" type="button" aria-label="Próxima foto">›</button>
-            </div>
+            <img id="f1" src="imagens/foto-c.jpg" alt="cafés e croassaints">
+            <img id="f2" src="imagens/foto-e.jpg" alt="cafés e croassaints">
+            <img id="f3" src="imagens/foto-f.jpg" alt="cafés e croassaints">
         </section>
     </main>
 
@@ -79,7 +72,6 @@
         </div>
         <img src="imagens/barista.jpg" alt="Barista preparando um café" class="barista">
     </footer>
-
-    <script src="js/script.js"></script>
+    
 </body>
 </html>

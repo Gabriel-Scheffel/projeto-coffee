@@ -51,23 +51,28 @@
         font-size: 2em;
     }
 
-    #fotos .galeria {
-        /* Foto maior, já que a tela também é maior. */
-        max-width: 800px;
+    #fotos {
+        /* GRID: substitui o empilhamento em coluna por uma grade de
+           3 colunas iguais, aproveitando a largura maior da tela
+           para mostrar as fotos lado a lado. */
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        padding: 30px 20px;
+        align-items: center;
     }
 
     #fotos img {
-        height: 350px;
+        /* O espaçamento entre as fotos já é feito pelo "gap" do
+           grid, então a margem manual não é mais necessária. */
+        margin: 0px;
+        width: 100%;
+        height: 260px;
     }
 
-    #fotos .preview {
-        flex-basis: 90px;
-    }
-
-    #fotos button {
-        width: 38px;
-        height: 76px;
-        font-size: 1.6em;
+    #fotos #f1 {
+        /* A partir do tablet há espaço para as 3 fotos lado a lado. */
+        display: block;
     }
 
     footer {
@@ -129,18 +134,8 @@
         font-size: 2.4em;
     }
 
-    #fotos .galeria {
-        /* Mais larga: dá espaço para os botões ficarem bem mais
-           afastados das fotos, perto das bordas da seção. */
-        max-width: 1000px;
-    }
-
     #fotos img {
-        height: 460px;
-    }
-
-    #fotos .preview {
-        flex-basis: 130px;
+        height: 300px;
     }
 
     footer {

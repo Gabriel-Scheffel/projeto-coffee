@@ -180,89 +180,27 @@ main #historia {
 
 #fotos {
     background-color: var(--creme);
-    /* FLEXBOX: centraliza o bloco da galeria (foto + botões). */
+    /* FLEXBOX (celular): empilha as fotos em uma única coluna, o
+       formato que cabe melhor em telas estreitas. */
     display: flex;
-    justify-content: center;
-    padding: 30px 15px;
-}
-
-#fotos .galeria {
-    /* FLEXBOX em linha: justify-content:space-between empurra os
-       botões para as duas pontas, enquanto as fotos ficam agrupadas
-       (e mais afastadas dos botões) no meio, dentro de .fotos-wrap. */
-    display: flex;
+    flex-flow: column nowrap;
     align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 650px;
-}
-
-#fotos .fotos-wrap {
-    /* flex:1 1 auto — sem isso, este bloco só ficava do tamanho dos
-       seus filhos (encolhia/crescia conforme a proporção natural de
-       cada foto), em vez de sempre preencher o espaço entre os dois
-       botões. Isso fazia a foto principal mudar de largura conforme
-       a proporção da imagem (retrato ficava bem mais estreita). */
-    flex: 1 1 auto;
-    min-width: 0;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    padding: 20px 0px;
 }
 
 #fotos img {
-    height: 280px;
+    margin: 10px 0px;
+    width: 95%;
+    height: 220px;
     object-fit: cover;
     border-radius: 8px;
-    display: block;
 }
 
-#fotos #foto-galeria {
-    /* flex:1 1 auto — a foto principal ocupa o espaço que sobrar
-       entre as duas fotos de preview. */
-    flex: 1 1 auto;
-    min-width: 0;
-}
-
-#fotos .preview {
-    /* Fotos de preview (anterior/próxima): menores, mas agora com
-       opacidade mais alta — para aparecerem melhor sem competir com
-       a foto principal. */
-    flex: 0 1 65px;
-    min-width: 0;
-    opacity: 0.75;
-}
-
-#foto-anterior {
-    /* mask-image: cria o efeito degradê, apagando a foto só perto da
-       borda externa (esquerda) — o "black 35%" mantém boa parte da
-       foto totalmente visível antes de começar a desaparecer. */
-    -webkit-mask-image: linear-gradient(to left, black 35%, transparent);
-    mask-image: linear-gradient(to left, black 35%, transparent);
-}
-
-#foto-proxima {
-    /* Mesmo degradê, espelhado para a borda direita. */
-    -webkit-mask-image: linear-gradient(to right, black 35%, transparent);
-    mask-image: linear-gradient(to right, black 35%, transparent);
-}
-
-#fotos button {
-    /* Botões retangulares (mais altos do que largos), ao lado da
-       foto. */
-    flex: 0 0 auto;
-    width: 32px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.4em;
-    line-height: 1;
-    border: none;
-    border-radius: 6px;
-    background-color: var(--marrom-escuro);
-    color: var(--creme);
-    cursor: pointer;
+#fotos #f1 {
+    /* No celular escondemos a primeira foto para a seção não ficar
+       longa demais; a partir do tablet (ver media query abaixo) o
+       layout muda para grid e ela volta a aparecer. */
+    display: none;
 }
 
 footer {
