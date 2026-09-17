@@ -1,0 +1,233 @@
+/*
+    MEDIA QUERIES
+    Este arquivo reúne todas as media queries do site — ou seja, tudo
+    que muda o layout a partir do celular (definido em style.css).
+    São 3 breakpoints, cada um sobrescrevendo fontes, alturas e o
+    tipo de layout (flex/grid) conforme a tela cresce: tablet (600px),
+    desktop (1024px) e monitores grandes (1600px).
+*/
+
+/* ==========================================================
+   MEDIA QUERY 1 — TABLETS (a partir de 600px)
+   Há mais espaço horizontal disponível: aumentamos fontes e alturas
+   e trocamos a galeria de fotos de FLEXBOX em coluna para GRID de
+   3 colunas, exibindo as 3 fotos lado a lado.
+   ========================================================== */
+@media (min-width: 600px) {
+
+    header h1 {
+        font-size: 3.4em;
+    }
+
+    header p {
+        font-size: 1.8em;
+    }
+
+    #sabores {
+        /* Mesma ideia do celular (texto antes, foto depois, ver
+           regra base), só que aqui a foto é a versão horizontal,
+           recortada bem junto às 3 xícaras — maior e mais larga, já
+           que a tela também é mais larga. */
+        padding: 0;
+    }
+
+    #sabores .item {
+        /* Mesmo padrão do celular: padding-top bem maior, para não
+           parecer uma continuação do texto de "história". */
+        padding: 110px 30px 40px;
+    }
+
+    #sabores .foto {
+        display: block;
+        width: 100%;
+        aspect-ratio: 2073 / 1037;
+        /* Mesmo degradê do celular. */
+        background-image: linear-gradient(to top, rgba(0, 0, 0, 0), var(--marrom-escuro) 95%, var(--marrom-escuro) 100%), url(../imagens/xicaras-horizontal.jpg);
+        background-size: cover;
+        background-position: center center;
+    }
+
+    #sabores p {
+        font-size: 2em;
+    }
+
+    #fotos {
+        /* GRID: substitui o empilhamento em coluna por uma grade de
+           3 colunas iguais, aproveitando a largura maior da tela
+           para mostrar as fotos lado a lado. */
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        padding: 30px 20px;
+        align-items: center;
+    }
+
+    #fotos img {
+        /* O espaçamento entre as fotos já é feito pelo "gap" do
+           grid, então a margem manual não é mais necessária. */
+        margin: 0px;
+        width: 100%;
+        height: 260px;
+    }
+
+    #fotos #f1 {
+        /* A partir do tablet há espaço para as 3 fotos lado a lado. */
+        display: block;
+    }
+
+    footer {
+        /* O padding-bottom extra era só para dar respiro no celular;
+           a partir daqui o footer já tem altura própria (ver abaixo
+           no breakpoint de desktop), então volta ao valor original. */
+        padding-bottom: 30px;
+    }
+
+    footer h2 {
+        font-size: 2.2em;
+    }
+
+    footer p {
+        font-size: 1.3em;
+    }
+}
+
+/* ==========================================================
+   MEDIA QUERY 2 — DESKTOP (a partir de 1024px)
+   Em telas grandes usamos os tamanhos "cheios" do design original:
+   header e footer com altura maior (a tela garante espaço de sobra)
+   e fontes maiores, já que a leitura tende a ser feita mais de longe.
+   ========================================================== */
+@media (min-width: 1024px) {
+
+    header {
+        /* 100vh (altura da tela) em vez de um valor fixo em pixels:
+           assim o header sempre ocupa exatamente a tela do usuário,
+           não importa a resolução do monitor. Com altura fixa, em
+           monitores com tela mais baixa o header ficava mais alto
+           que a área visível e o texto centralizado "escorregava"
+           para fora da parte visível (ficava perto do rodapé). */
+        height: 100vh;
+        min-height: unset;
+    }
+
+    header h1 {
+        font-size: 5em;
+    }
+
+    header p {
+        font-size: 2.4em;
+    }
+
+    main #historia {
+        max-width: 350px;
+    }
+
+    #historia > h2 {
+        font-size: 2.2em;
+    }
+
+    #historia > p {
+        font-size: 1.2em;
+    }
+
+    #sabores p {
+        font-size: 2.4em;
+    }
+
+    #fotos img {
+        height: 300px;
+    }
+
+    footer {
+        height: 600px;
+        min-height: unset;
+        /* FLEXBOX em linha: texto de um lado, foto do barista do
+           outro, cada um ocupando a altura inteira do footer. */
+        flex-direction: row;
+        align-items: stretch;
+        padding: 0;
+    }
+
+    footer > div#texto {
+        height: auto;
+        flex: 1 1 50%;
+        padding: 40px;
+        /* Alinhado à esquerda em vez de centralizado, já que agora o
+           texto ocupa só a metade esquerda do footer. */
+        text-align: left;
+        /* justify-content:center (em vez de space-around, herdado da
+           regra base): mantém os blocos de texto próximos uns dos
+           outros, só com o "gap" entre eles, em vez de esparramados
+           pela altura toda do footer. */
+        justify-content: center;
+    }
+
+    footer .barista {
+        display: block;
+        flex: 1 1 50%;
+        width: 50%;
+        height: 100%;
+        object-fit: cover;
+        /* A foto é vertical (retrato) e essa metade do footer é bem
+           mais larga que alta, então o cover corta bastante de cima
+           e de baixo. object-position no topo garante que o rosto do
+           barista sempre fique visível, em qualquer largura de tela. */
+        object-position: top center;
+    }
+
+    footer h2 {
+        font-size: 3em;
+    }
+
+    footer p {
+        font-size: 1.6em;
+    }
+}
+
+/* ==========================================================
+   MEDIA QUERY 3 — MONITORES GRANDES (a partir de 1600px)
+   Em monitores muito largos o texto do header (título e subtítulo)
+   ficava com uma fonte proporcionalmente pequena em relação ao
+   tamanho da tela. Este breakpoint aumenta só essas duas fontes.
+   ========================================================== */
+@media (min-width: 1600px) {
+
+    header h1 {
+        font-size: 6.5em;
+    }
+
+    header p {
+        font-size: 3em;
+    }
+
+    main > div {
+        /* min-height:100vh: em monitores grandes a seção "história"
+           passa a ocupar a tela inteira, como o header — assim, ao
+           rolar até ela, o usuário não vê mais pedaços das seções
+           vizinhas (sabores/fotos) misturados na mesma tela. */
+        min-height: 100vh;
+    }
+
+    main #historia {
+        max-width: 450px;
+    }
+
+    #sabores .foto {
+        /* Em vez de limitar a largura (o que sobrava como fundo
+           escuro dos lados), troca para uma versão bem mais larga da
+           mesma foto — com mais mesa de madeira visível dos dois
+           lados das xícaras. Assim a foto continua ocupando 100% da
+           largura, de ponta a ponta, mas as xícaras não ficam
+           gigantes/com zoom exagerado em monitores muito largos. */
+        aspect-ratio: 2880 / 1037;
+        background-image: linear-gradient(to top, rgba(0, 0, 0, 0), var(--marrom-escuro) 95%, var(--marrom-escuro) 100%), url(../imagens/xicaras-horizontal-wide.jpg);
+    }
+
+    #historia > h2 {
+        font-size: 3em;
+    }
+
+    #historia > p {
+        font-size: 1.5em;
+    }
+}

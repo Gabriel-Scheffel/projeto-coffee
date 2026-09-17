@@ -5,10 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coffee Shop</title>
     <link rel="stylesheet" href="estilos/style.css">
+    <link rel="stylesheet" href="estilos/media-query.css">
     <link rel="shortcut icon" href="icon.ico" type="image/x-icon">
 </head>
 <body class="container">
 
+    <!-- HEADER: título centralizado com flexbox (estilos/style.css)
+         e altura responsiva (menor no celular, 900px no desktop). -->
     <header class="item">
 
         <div class="container">
@@ -22,21 +25,29 @@
 
     </header>
 
+    <!-- MAIN: as 3 seções abaixo são empilhadas usando CSS grid
+         (estilos/style.css), com media queries ajustando fontes e
+         alturas conforme o tamanho da tela. -->
     <main class="item">
         <div>
             <section id="historia">
                 <h2>NOSSA HISTÓRIA</h2>
-                <P>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam ad vero ipsa at quibusdam quisquam ut molestiae incidunt deleniti dolorem, voluptatibus, quo eum est fuga consequatur veniam, earum quos aliquam.</P>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam ad vero ipsa at quibusdam quisquam ut molestiae incidunt deleniti dolorem, voluptatibus, quo eum est fuga consequatur veniam, earum quos aliquam.</p>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos aperiam delectus, provident doloribus, eos quaerat fuga ratione architecto consequuntur cum nam eaque optio quod ipsum nihil ducimus, saepe possimus vitae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, quis velit aperiam sequi totam debitis quasi iste necessitatibus saepe, quidem, possimus ab. Officiis quidem odio odit sint id iusto voluptas?</p>
             </section>
         </div>
 
         <section id="sabores">
             <div class="item">
-                <p>ARROMA MARCANTE E SABOR <br>INESQUECÍVEL</p>
+                <p>AROMA MARCANTE E SABOR <br>INESQUECÍVEL</p>
             </div>
+            <div class="foto"></div>
         </section>
 
+        <!-- GALERIA DE FOTOS: no celular fica em coluna única (flexbox,
+             1ª foto escondida para não alongar a página); a partir de
+             600px de largura passa a ser um grid de 3 colunas com as
+             3 fotos lado a lado (ver media query em estilos/style.css). -->
         <section id="fotos" class="container">
             <img id="f1" src="imagens/foto-c.jpg" alt="cafés e croassaints">
             <img id="f2" src="imagens/foto-e.jpg" alt="cafés e croassaints">
@@ -44,6 +55,13 @@
         </section>
     </main>
 
+    <!-- FOOTER: flexbox organiza título e itens de contato em coluna
+         (estilos/style.css), com altura e fontes crescendo em telas
+         maiores via media query. -->
+    <!-- FOOTER: no desktop (ver media query em estilos/style.css) o
+         footer vira duas colunas com flexbox e a foto do barista
+         aparece ao lado do texto; no celular e no tablet ela fica
+         escondida e o footer continua só com o texto centralizado. -->
     <footer class="item">
         <div id="texto">
             <h2>CONTATO</h2>
@@ -52,6 +70,7 @@
             <p><strong>Email:</strong> <br>coffeshop@mail.com</p>
             <p><strong>Endereço:</strong> <br>Av. Bento Gonçalves, 9500 Porto Alegre</p>
         </div>
+        <img src="imagens/barista.jpg" alt="Barista preparando um café" class="barista">
     </footer>
     
 </body>

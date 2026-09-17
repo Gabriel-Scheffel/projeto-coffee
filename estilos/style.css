@@ -21,50 +21,82 @@
     --font-texto: "Cabin", sans-serif;
 }
 
+/*
+    ESTRATÉGIA MOBILE-FIRST
+    Este arquivo tem só os estilos "base", para telas pequenas (celular).
+    Todas as media queries (tablet, desktop, monitores grandes) ficam no
+    arquivo estilos/media-query.css, carregado depois deste no HTML —
+    lá é que as fontes, alturas e o tipo de layout (flex -> grid) mudam
+    conforme a tela cresce, para aproveitar melhor o espaço disponível.
+*/
 
 body {
+    /* GRID: empilha header, main e footer em uma única coluna.
+       Como o body não tem altura fixa, cada linha do grid ocupa
+       exatamente a altura do próprio conteúdo. */
     display: grid;
 }
-/*
-body > .item {
-    border: 5px dashed green;
-}
-*/
+
 header {
     background-image: url(../imagens/cafe-graos.jpg);
     background-attachment: fixed;
-    height: 900px;
+    /* cover + center: a imagem de fundo preenche o header inteiro e
+       fica centralizada, em vez de repetir a partir do canto superior
+       esquerdo (comportamento padrão do CSS), o que também deixava o
+       texto com aspecto "descentralizado" em relação ao fundo. */
+    background-size: cover;
+    background-position: center center;
+    /* min-height (em vez de height fixo) permite que o header cresça
+       caso o texto precise de mais espaço em telas estreitas. */
+    min-height: 60vh;
     color: var(--creme);
 }
 
 header .container {
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), var(--marrom-escuro));
     height: 100%;
+    /* FLEXBOX: com flex-direction em coluna, align-items e
+       justify-content centralizam o bloco de título/subtítulo tanto
+       na horizontal quanto na vertical, em qualquer largura de tela
+       (mais confiável do que depender de flex-grow + max-width). */
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
 }
 
 header .item {
     text-align: center;
-    max-width: 90%;
-    flex: 1 1 auto;
-    align-self: center;
-
+    width: 100%;
+    max-width: 900px;
+    padding: 0 20px;
 }
 
 header h1 {
     font-family: var(--font-titulo);
-    font-size: 4em;
+    /* Fonte reduzida no celular para não quebrar em várias linhas. */
+    font-size: 2.4em;
 }
 
 header p {
     font-family: var(--font-texto);
-    font-size: 2em;
+    font-size: 1.3em;
 }
 
 main {
+    /* GRID: empilha as seções (história, sabores, fotos) verticalmente.
+       Em telas pequenas cada linha usa "auto", ou seja, a altura do
+       próprio conteúdo — assim nenhuma seção fica cortada ou com
+       espaço em branco sobrando. */
     display: grid;
-    grid-template: 1fr 1fr 1fr / 100%
+    grid-template-rows: auto auto auto;
+    grid-template-columns: 100%;
+    /* Evita uma linha clara (o branco padrão do body) aparecer entre
+       as seções: com aspect-ratio, a altura calculada pode arredondar
+       em uma fração de pixel e deixar uma frestinha visível entre as
+       linhas do grid. Com o fundo do main já escuro, essa frestinha
+       fica imperceptível. */
+    background-color: var(--marrom-escuro);
 }
 
 main > div {
@@ -72,90 +104,139 @@ main > div {
     color: var(--creme);
     display: flex;
     justify-content: center;
+    padding: 30px 15px;
 }
 
 main #historia {
-    flex: 0 1 300px;
+    /* width + max-width (em vez de um flex-basis fixo em pixels):
+       o texto ocupa quase toda a largura disponível no celular e,
+       nos breakpoints abaixo, o max-width cresce para acompanhar
+       telas maiores sem ficar com linhas exageradamente longas. */
+    width: 100%;
+    max-width: 300px;
     align-self: center;
 }
 
 #historia > h2 {
     font-family: var(--font-titulo);
-    font-size: 2.6em;
+    font-size: 1.9em;
     text-align: center;
     margin: 20px;
 }
 
 #historia > p {
     font-family: var(--font-texto);
-    font-size: 1.2em;
+    font-size: 1.1em;
     text-align: justify;
 }
 
 #sabores {
-    background-image: linear-gradient(to top, rgba(0, 0, 0, 0), var(--marrom-escuro)), url(../imagens/xicaras.jpg);
-    background-size: cover;
-    background-position: center center;
+    /* No celular a seção é baixa e estreita; a foto original (com as
+       3 xícaras uma ao lado da outra) ficava toda cortada nesse
+       formato, e sobrepor o texto na foto também deixava tudo
+       apertado. Por isso, no celular, esta seção vira dois blocos
+       empilhados (FLEXBOX em coluna): primeiro o texto, num fundo
+       liso, depois a foto (já cortada bem justa nas 3 xícaras,
+       giradas 90° para caber empilhadas numa faixa estreita). A
+       partir do tablet (ver media query abaixo) volta a ser um único
+       bloco, com o texto sobre a foto original na horizontal. */
+    background-color: var(--marrom-escuro);
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
 }
 
 #sabores .item {
-    height: 65%;
-    flex: 0 1 auto;
+    /* Padding-top bem maior: cria uma respiração clara entre o
+       último parágrafo de "história" e este texto, para não parecer
+       uma continuação do texto da seção anterior. */
+    padding: 110px 15px 24px;
+}
+
+#sabores .foto {
+    /* aspect-ratio: mesma proporção da foto já cortada (ver
+       imagens/xicaras-vertical.jpg), então o cover não precisa
+       recortar nada extra — as 3 xícaras aparecem inteiras, com uma
+       folga maior depois da última do que antes da primeira. */
+    width: 100%;
+    aspect-ratio: 1920 / 2132;
+    /* Degradê original: escurece o topo da foto para o texto acima
+       encostar sem uma quebra brusca de cor. O segundo stop repetido
+       (95%/100% com a mesma cor) cria uma faixa 100% sólida bem fina
+       exatamente na borda — sem isso, o próprio degradê pode
+       arredondar a última linha de pixel para um tom levemente
+       diferente do fundo sólido acima, e essa diferença aparece como
+       uma linha (foi essa a causa do "gap"). */
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0), var(--marrom-escuro) 95%, var(--marrom-escuro) 100%), url(../imagens/xicaras-vertical.jpg);
+    background-size: cover;
+    background-position: center center;
 }
 
 #sabores p {
     font-family: var(--font-titulo);
-    font-size: 2.4em;
+    font-size: 1.6em;
     text-align: center;
     color: var(--creme);
 }
 
 #fotos {
     background-color: var(--creme);
+    /* FLEXBOX (celular): empilha as fotos em uma única coluna, o
+       formato que cabe melhor em telas estreitas. */
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
+    padding: 20px 0px;
 }
 
 #fotos img {
-    margin: 20px 0px;
+    margin: 10px 0px;
     width: 95%;
-    height: 300px;
-    object-fit: contain;
+    height: 220px;
+    object-fit: cover;
     border-radius: 8px;
 }
 
 #fotos #f1 {
+    /* No celular escondemos a primeira foto para a seção não ficar
+       longa demais; a partir do tablet (ver media query abaixo) o
+       layout muda para grid e ela volta a aparecer. */
     display: none;
 }
 
 footer {
     background-color: var(--marrom-escuro);
     color: var(--creme);
-    height: 600px;
+    /* +50% (300px -> 450px): footer maior por completo no celular. */
+    min-height: 450px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    /* padding-bottom dobrado (30px -> 60px): dá mais respiro entre o
+       endereço e o final da página, só no celular. */
+    padding: 30px 15px 60px;
 }
 
 footer > div#texto {
     text-align: center;
-    height: 60%;
     display: flex;
-    gap: 10px;
+    gap: 15px;
     flex-direction: column;
     justify-content: space-around;
 }
 
 footer h2 {
     font-family: var(--font-titulo);
-    font-size: 3em;
+    font-size: 1.8em;
 }
 
 footer p {
     font-family: var(--font-texto);
-    font-size: 1.6em;
+    font-size: 1em;
+}
+
+footer .barista {
+    /* A foto do barista só aparece no desktop (ver media query de
+       1024px em estilos/media-query.css); no celular e no tablet o
+       footer continua só com o texto centralizado. */
+    display: none;
 }
