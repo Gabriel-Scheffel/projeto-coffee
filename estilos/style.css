@@ -149,7 +149,7 @@ main #historia {
     /* Padding-top bem maior: cria uma respiração clara entre o
        último parágrafo de "história" e este texto, para não parecer
        uma continuação do texto da seção anterior. */
-    padding: 110px 15px 24px;
+    padding: 150px 15px 25px;
 }
 
 #sabores .foto {
@@ -166,7 +166,7 @@ main #historia {
        arredondar a última linha de pixel para um tom levemente
        diferente do fundo sólido acima, e essa diferença aparece como
        uma linha (foi essa a causa do "gap"). */
-    background-image: linear-gradient(to top, rgba(0, 0, 0, 0), var(--marrom-escuro) 95%, var(--marrom-escuro) 100%), url(../imagens/xicaras-vertical.jpg);
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0), var(--marrom-escuro)), url(../imagens/xicaras-vertical.jpg);
     background-size: cover;
     background-position: center center;
 }
